@@ -31,35 +31,36 @@ class TicTacToe:
         return all(cell != " " for row in self.board for cell in row)
 
     def play(self):
+        print("Welcome to Tic-Tac-Toe!")
         while True:
             self.display()
-            print(f"{self.current} navbati.")
+            print(f"Player {self.current}'s turn.")
 
             try:
-                r = int(input("Qator (0-2): "))
-                c = int(input("Ustun (0-2): "))
+                r = int(input("Enter row (0-2): "))
+                c = int(input("Enter column (0-2): "))
             except ValueError:
-                print("❗ Faqat raqam kiriting!")
+                print("❗ Invalid input! Please enter numbers only.")
                 continue
 
             if not self.is_valid_move(r, c):
-                print("❗ Noto‘g‘ri yoki band joy! Qayta urinib ko‘ring.")
+                print("❗ Invalid or occupied position! Try again.")
                 continue
 
             self.make_move(r, c)
 
             if self.is_winner(self.current):
                 self.display()
-                print(f"🎉 {self.current} g‘olib bo‘ldi!")
+                print(f"🎉 Player {self.current} wins!")
                 break
 
             if self.is_draw():
                 self.display()
-                print("🤝 Durang!")
+                print("🤝 It's a draw!")
                 break
 
             self.switch_player()
 
-
-game = TicTacToe()
-game.play()
+if __name__ == "__main__":
+    game = TicTacToe()
+    game.play()
